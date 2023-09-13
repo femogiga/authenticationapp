@@ -5,6 +5,10 @@
   --clr-lightblue: #2F80ED;
   --clr-lightgrey: #BDBDBD;
   --clr-midgray: #828282;
+  --clr-whitegray: #E0E0E0;
+  --clr-whitesmoke: #F2F2F2;
+  --clr-red: #EB5757;
+
 }
 
 
@@ -40,6 +44,22 @@ a {
 .flex-center {
   justify-content: center;
   gap: 1rem;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.gap-05 {
+  gap: 0.5rem
+}
+
+.gap-1 {
+  gap: 1rem
 }
 
 .flow-p5 {
@@ -83,6 +103,10 @@ a {
   color: var(--clr-midgray)
 }
 
+.font-red {
+  color: var(--clr-red)
+}
+
 .center {
   text-align: center
 }
@@ -91,7 +115,7 @@ a {
   margin-inline: auto;
 }
 
-/* ************************************************************** */
+/* *******************Login Component************************************* */
 .container {
   padding: 1rem;
   /* border: 1px solid black; */
@@ -135,6 +159,87 @@ input:focus {
 .submit:hover {
   transform: scaleY(1.05);
 }
+
+/* ***********************Thumbnail and avatar********************************* */
+
+.thumbcard {
+  /* border: 1px solid black; */
+  width: 190px;
+  /* height: 233px; */
+  color: var(--clr-midgray);
+  font-size: .7rem;
+  border-radius: 8px;
+  /* border:1px solid; */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  margin-inline: auto;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  font-size: .95rem;
+
+
+}
+
+.thumbcard ul {
+  padding: .7rem;
+  list-style: none;
+}
+
+.thumbcard li {
+  padding: .5rem;
+}
+
+.thumbcard li:hover {
+  background-color: var(--clr-whitesmoke);
+  border-radius: 8px;
+
+}
+
+.thumbcard li a {
+  color: var(--clr-midgray);
+}
+
+.logout {
+  color: var(--clr-red)
+}
+
+
+hr {
+  border: 1px solid var(--clr-whitegray);
+}
+
+
+
+/* ***************************************************************************************** */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media screen and (min-width:600px) {
