@@ -94,12 +94,17 @@ a {
 /* ************************************************************** */
 .container {
   padding: 1rem;
+  /* border: 1px solid black; */
+  height: 100vh;
+
 }
 
 .loginpage {
-  /* border: 1px solid black; */
-  max-width:473.83px;
-  padding:1rem;
+
+  max-width: 473.83px;
+  padding: 1rem;
+  margin-inline: auto;
+
 }
 
 
@@ -129,4 +134,22 @@ input:focus {
 
 .submit:hover {
   transform: scaleY(1.05);
+}
+
+
+@media screen and (min-width:600px) {
+  .container {
+
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+  }
+
+  .loginpage {
+    padding: 4rem;
+    border: 1px solid var(--clr-lightgrey);
+    border-radius: 24px;
+  }
+
+
 }
