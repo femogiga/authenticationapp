@@ -1,0 +1,132 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  --clr-lightblue: #2F80ED;
+  --clr-lightgrey: #BDBDBD;
+  --clr-midgray: #828282;
+}
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body {
+  line-height: 1.6;
+}
+
+
+img {
+  max-width: 100%
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr-lightblue)
+}
+
+/* ******************************************************** */
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+  gap: 1rem;
+}
+
+.flow-p5 {
+  margin-block-end: 0.5rem;
+}
+
+.flow-1 {
+  margin-block-end: 1rem;
+}
+
+.flow-2 {
+  margin-block-end: 2rem;
+}
+
+.flow-3 {
+  margin-block-end: 3rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.rel {
+  position: relative;
+}
+
+.abs {
+  position: absolute
+}
+
+.xyoffset {
+  top: .7rem;
+  left: 1rem;
+}
+
+.radius-8 {
+  border-radius: 8px;
+}
+
+.font-grey {
+  color: var(--clr-midgray)
+}
+
+.center {
+  text-align: center
+}
+
+.flow-center {
+  margin-inline: auto;
+}
+
+/* ************************************************************** */
+.container {
+  padding: 1rem;
+}
+
+.loginpage {
+  /* border: 1px solid black; */
+  max-width:473.83px;
+  padding:1rem;
+}
+
+
+input {
+  width: 100%;
+  padding: .9rem 0;
+  border: 1px solid var(--clr-lightgrey);
+}
+
+input:focus {
+  border-color: var(--clr-lightblue);
+}
+
+::placeholder {
+  padding-inline-start: 3rem;
+  color: var(--clr-midgray)
+}
+
+.submit {
+  width: 100%;
+  padding-block: .6rem;
+  background-color: var(--clr-lightblue);
+  color: white;
+  border: none;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0);
+}
+
+.submit:hover {
+  transform: scaleY(1.05);
+}
