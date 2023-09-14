@@ -6,13 +6,21 @@ const Profile = () => {
   return (
     <section>
       <table>
-        <tr>
+        {/* <tr>
           <th colSpan='2' className='remove-underline'>
-            <td className='remove-underline' style={{ textAlign: 'start' }}>
+            <td className='remove-underline' style={{ textAlign: 'center' }}>
               <span style={{ fontSize: '2rem' }}>Personal info </span>
               <br />
               Basic info , like your name and photo
             </td>
+          </th>
+        </tr> */}
+        <tr>
+          <th colSpan='2' className='remove-underline'>
+
+              <span style={{ fontSize: '2rem' }}>Personal info </span>
+              <br />
+              Basic info , like your name and photo
           </th>
         </tr>
 
@@ -20,11 +28,13 @@ const Profile = () => {
           <th className='remove-underline' style={{ textAlign: 'start' }}>
             <span style={{ fontSize: '1.4rem' }}>Profile</span>
             <br />
-            <span className='font-grey'>some info may be visible to other people</span>
+            <span className='font-grey'>
+              some info may be visible to other people
+            </span>
           </th>
           <td
             className='remove-underline'
-            style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            style={{ display: 'flex', justifyContent: 'flex-end' ,alignItems:'center'}}>
             <button>Edit</button>
           </td>
         </tr>

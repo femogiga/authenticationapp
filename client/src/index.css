@@ -277,19 +277,15 @@ table tr{
 
 /* text-align: left; */
 }
-td{
-  padding-block: 2rem;
-  /* border-top: 1px solid black; */
-  /* border-bottom: 1px solid black; */
-}
+
 
 
 
 
 th ,td {
   border-bottom: 1px solid;
-border-color: var(--clr-midgray)
-
+border-color: var(--clr-midgray);
+padding-block: 1.8rem;
 
 }
 .fs-small{
