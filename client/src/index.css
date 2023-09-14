@@ -361,7 +361,7 @@ td+td {
 }
 
 
-.editpage .material-symbols-outlined {
+.editpage .material-symbols-outlined.abs {
   font-variation-settings:
     'FILL' 1,
     'wght' 400,
