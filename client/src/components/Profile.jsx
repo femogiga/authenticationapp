@@ -60,7 +60,7 @@ const Profile = () => {
         <tr>
           <td className='font-lightgrey'>PHOTO</td>
           <td style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <img src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600' />
+            <img className='img-style' src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600'/>
           </td>
         </tr>
         <tr>

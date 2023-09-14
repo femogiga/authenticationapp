@@ -5,6 +5,7 @@ import Container from './components/reuseable/Container';
 import ThumbCard from './components/reuseable/ThumbCard';
 import Header from './components/Header';
 import Profile from './components/Profile';
+import EditPage from './components/EditPage';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,9 +15,13 @@ function App() {
       {/* <Container>
         <Loginpage />
       </Container> */}
-      <Container>
+      {/* <Container>
         <Header />
         <Profile />
+      </Container> */}
+      <Container>
+        <Header />
+        <EditPage/>
       </Container>
     </div>
   );
