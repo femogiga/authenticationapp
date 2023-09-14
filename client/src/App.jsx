@@ -19,10 +19,11 @@ function App() {
         <Header />
         <Profile />
       </Container> */}
-      <Container>
+      {/* <Container>
         <Header />
         <EditPage/>
-      </Container>
+      </Container> */}
+      <Loginpage/>
     </div>
   );
 }

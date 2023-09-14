@@ -4,7 +4,7 @@ import Header from './Header';
 
 const Profile = () => {
   return (
-    <section>
+    <section className='profile'>
       <table>
         {/* <tr>
           <th colSpan='2' className='remove-underline'>
