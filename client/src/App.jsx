@@ -8,8 +8,6 @@ import Profile from './components/Profile';
 import EditPage from './components/EditPage';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
       {/* <Container>
@@ -23,7 +21,7 @@ function App() {
         <Header />
         <EditPage/>
       </Container> */}
-      <Loginpage/>
+      <Loginpage />
     </div>
   );
 }

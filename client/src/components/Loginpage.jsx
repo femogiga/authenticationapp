@@ -1,12 +1,15 @@
-import React from 'react';
+
 import Logo from './reuseable/Logo';
 import twitter from '../assets/images/Twitter.svg';
 import github from '../assets/images/Gihub.svg';
 import google from '../assets/images/Google.svg';
 import facebook from '../assets/images/Facebook.svg';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { setInputValue } from '../features/inputSlice';
 
 const Loginpage = () => {
+
   return (
     <div className='loginpage'>
       <Logo />
@@ -20,11 +23,11 @@ const Loginpage = () => {
       <form>
         <div className='flow-p5 rel font-grey'>
           <span className='material-symbols-outlined abs xyoffset'>mail</span>
-          <input type='email' placeholder='Email' className='radius-8' />
+          <input type='email' placeholder='Email' className='radius-8' name='email' id='email' />
         </div>
         <div className='flow-1 rel font-grey '>
           <span className='material-symbols-outlined abs xyoffset'>lock</span>
-          <input type='password' placeholder='Password' className='radius-8' />
+          <input type='password' placeholder='Password' className='radius-8' name='password'  id='password'/>
         </div>
         <div className='flow-1'>
           <button className='submit radius-8' type='submit'>

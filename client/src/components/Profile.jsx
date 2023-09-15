@@ -17,10 +17,9 @@ const Profile = () => {
         </tr> */}
         <tr>
           <th colSpan='2' className='remove-underline'>
-
-              <span style={{ fontSize: '2rem' }}>Personal info </span>
-              <br />
-              Basic info , like your name and photo
+            <span style={{ fontSize: '2rem' }}>Personal info </span>
+            <br />
+            Basic info , like your name and photo
           </th>
         </tr>
 
@@ -34,7 +33,11 @@ const Profile = () => {
           </th>
           <td
             className='remove-underline'
-            style={{ display: 'flex', justifyContent: 'flex-end' ,alignItems:'center'}}>
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+            }}>
             <button>Edit</button>
           </td>
         </tr>
@@ -60,7 +63,10 @@ const Profile = () => {
         <tr>
           <td className='font-lightgrey'>PHOTO</td>
           <td style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <img className='img-style' src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600'/>
+            <img
+              className='img-style'
+              src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600'
+            />
           </td>
         </tr>
         <tr>

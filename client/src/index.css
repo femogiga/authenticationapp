@@ -266,9 +266,10 @@ hr {
 
 
 /* ****************************profile dashboard*****************************8 */
-.profile{
-  padding:1rem;
+.profile {
+  padding: 1rem;
 }
+
 table {
   width: 100%;
   /* border-spacing: 10px; */
@@ -343,9 +344,11 @@ td+td {
   padding: 1rem 0;
   border-radius: 10px
 }
-.editpage{
-  padding:1rem;
+
+.editpage {
+  padding: 1rem;
 }
+
 .editpage ::placeholder {
   padding-inline-start: 1rem;
   color: var(--clr-midgray)

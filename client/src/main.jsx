@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Loginpage from './components/Loginpage.jsx';
 import EditPage from './components/EditPage.jsx';
 import Profile from './components/Profile.jsx';
+import { Provider } from 'react-redux';
+import store from './features/store.js';
 
 const Root = () => {
   return (
@@ -21,6 +23,8 @@ const Root = () => {
 };
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Root />
+    <Provider store={store}>
+      <Root />
+    </Provider>
   </React.StrictMode>
 );
