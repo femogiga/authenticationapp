@@ -2,12 +2,14 @@ import { useState } from 'react';
 import Logo from './reuseable/Logo';
 import ThumbCard from './reuseable/ThumbCard';
 import { Link } from 'react-router-dom';
-
+import { setVisible } from '../features/thumbSlice';
+import { useSelector, useDispatch } from 'react-redux';
 const Header = () => {
-  const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
+  const visible = useSelector((state) => state.thumb.visible);
   const handleThumbVisible = (e) => {
     e.preventDefault();
-    setVisible((visible) => !visible);
+    dispatch(setVisible());
   };
   return (
     <header className='header flex space-btw gap-1'>
