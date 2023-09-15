@@ -6,6 +6,7 @@ import facebook from '../assets/images/Facebook.svg';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setInputValue, clear, submit } from '../features/loginSlice';
+import Header from './Header';
 
 const Loginpage = () => {
   const dispatch = useDispatch();
@@ -14,18 +15,18 @@ const Loginpage = () => {
 
   const handleInputChange = (field, value) => {
     dispatch(setInputValue({ field, value }));
-
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(submit());
-     dispatch(clear());
+    dispatch(clear());
   };
 
   return (
     <div className='loginpage'>
       <Logo />
+
       <p className='flow-1 bold'>
         Join thousands of learners from around the world
       </p>

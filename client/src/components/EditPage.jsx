@@ -4,6 +4,7 @@ import InputComponent from './reuseable/InputComponent';
 import TextAreaComponent from './reuseable/TextAreaComponent';
 import { useSelector, useDispatch } from 'react-redux';
 import { setInputValue, clear, submit } from '../features/inputSlice';
+import Header from './Header';
 
 const EditPage = () => {
   const nameInput = useSelector((state) => state.edit.nameInput);
@@ -26,6 +27,7 @@ const EditPage = () => {
 
   return (
     <div className='editpage'>
+      <Header/>
       <div className='flow-3'>
         <Link className='flex align-center gap-05'>
           <span className='material-symbols-outlined'>arrow_back_ios_new</span>
@@ -103,7 +105,7 @@ const EditPage = () => {
           onChange={(e) => handleInputChange('passwordInput', e.target.value)}
         />
         <div>
-          <button onClick={handleSubmit}>Save</button>
+          <button className='submitbutton' onClick={handleSubmit}>Save</button>
         </div>
       </form>
     </div>

@@ -362,7 +362,7 @@ td+td {
   color: var(--clr-midgray)
 }
 
-.editpage button {
+.editpage submitbutton {
   padding: .7rem 2rem;
   border-radius: 8px;
   border: none;
@@ -371,7 +371,7 @@ td+td {
 
 }
 
-.editpage button:hover {
+.editpage submitbutton:hover {
   transform: scaleY(1.1)
 }
 
