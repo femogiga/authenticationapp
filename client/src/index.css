@@ -101,7 +101,7 @@ a {
 }
 
 .xyoffset {
-  top: .7rem;
+  top: .9rem;
   left: 1rem;
 }
 
@@ -153,10 +153,18 @@ input {
 
 .loginpage input {
   border: 1px solid var(--clr-lightgrey);
+
+
 }
 
 input:focus {
   border-color: var(--clr-lightblue);
+  padding-left: 2rem
+}
+
+input:focus~span {
+  display: none;
+
 }
 
 .loginpage ::placeholder {

@@ -1,14 +1,27 @@
-
 import Logo from './reuseable/Logo';
 import twitter from '../assets/images/Twitter.svg';
 import github from '../assets/images/Gihub.svg';
 import google from '../assets/images/Google.svg';
 import facebook from '../assets/images/Facebook.svg';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'
-import { setInputValue } from '../features/inputSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { setInputValue, clear, submit } from '../features/loginSlice';
 
 const Loginpage = () => {
+  const dispatch = useDispatch();
+  const emailInput = useSelector((state) => state.login.emailInput);
+  const passwordInput = useSelector((state) => state.login.passwordInput);
+
+  const handleInputChange = (field, value) => {
+    dispatch(setInputValue({ field, value }));
+
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(submit());
+     dispatch(clear());
+  };
 
   return (
     <div className='loginpage'>
@@ -22,15 +35,34 @@ const Loginpage = () => {
       </p>
       <form>
         <div className='flow-p5 rel font-grey'>
+          <input
+            type='email'
+            placeholder='Email'
+            className='radius-8'
+            name='emailInput'
+            id='emailInput'
+            value={emailInput}
+            onChange={(e) => handleInputChange('emailInput', e.target.value)}
+          />
           <span className='material-symbols-outlined abs xyoffset'>mail</span>
-          <input type='email' placeholder='Email' className='radius-8' name='email' id='email' />
         </div>
         <div className='flow-1 rel font-grey '>
           <span className='material-symbols-outlined abs xyoffset'>lock</span>
-          <input type='password' placeholder='Password' className='radius-8' name='password'  id='password'/>
+          <input
+            type='password'
+            placeholder='Password'
+            className='radius-8'
+            name='passwordInput'
+            id='passwordInput'
+            value={passwordInput}
+            onChange={(e) => handleInputChange('passwordInput', e.target.value)}
+          />
         </div>
         <div className='flow-1'>
-          <button className='submit radius-8' type='submit'>
+          <button
+            className='submit radius-8'
+            type='submit'
+            onClick={handleSubmit}>
             Start coding now
           </button>
         </div>
