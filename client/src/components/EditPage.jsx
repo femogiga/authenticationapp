@@ -29,7 +29,7 @@ const EditPage = () => {
     <div className='editpage'>
       <Header/>
       <div className='flow-3'>
-        <Link className='flex align-center gap-05'>
+        <Link to='/profile' className='flex align-center gap-05'>
           <span className='material-symbols-outlined'>arrow_back_ios_new</span>
           Back
         </Link>
