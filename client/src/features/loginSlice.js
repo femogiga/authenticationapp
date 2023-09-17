@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import apiService from '../apiService';
+
 
 const loginSlice = createSlice({
   name: 'login',
   initialState: {
     emailInput: '',
     passwordInput: '',
+    data:null,
   },
   reducers: {
     setInputValue: (state, action) => {
@@ -16,11 +19,23 @@ const loginSlice = createSlice({
       state.passwordInput = '';
     },
     submit: (state) => {
+
       const credentials = {
         email: state.emailInput,
         password: state.passwordInput,
       };
+      apiService
+        .create('/users/login', credentials)
+        .then((response) => {
+          if (response.status === 200 && response.data.user) {
+            console.log(response);
+            state.data = [...response.data]
+
+          }
+        })
+        .catch((error) => console.error(error));
       console.log(credentials);
+      console.log(state.data)
     },
   },
 });
