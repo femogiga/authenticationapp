@@ -5,22 +5,46 @@ import google from '../assets/images/Google.svg';
 import facebook from '../assets/images/Facebook.svg';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setInputValue, clear, submit } from '../features/loginSlice';
+import { setInputValue, clear, loginAsync } from '../features/loginSlice';
 import Header from './Header';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Loginpage = () => {
   const dispatch = useDispatch();
-  const emailInput = useSelector((state) => state.login.emailInput);
-  const passwordInput = useSelector((state) => state.login.passwordInput);
+  const { emailInput, passwordInput, data, loading, error } = useSelector(
+    (state) => state.login
+  );
 
   const handleInputChange = (field, value) => {
     dispatch(setInputValue({ field, value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(submit());
-    dispatch(clear());
+  useEffect(() => {
+    // console.log(data);
+      console.log(data);
+  },[data])
+
+  const navigate = useNavigate();
+
+  // Select login state from Redux store
+
+  // Handle login form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    // Dispatch the loginAsync action with user credentials
+    dispatch(loginAsync({ email: emailInput, password: passwordInput }))
+      .then(() => {
+        if (data && data.token) {
+          // Redirect to the profile page after successful login
+          localStorage.setItem('token',data.token);
+          // console.log(data.token)
+          navigate('/profile');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -61,9 +85,9 @@ const Loginpage = () => {
         </div>
         <div className='flow-1'>
           <button
+            onClick={handleSubmit}
             className='submit radius-8'
-            type='submit'
-            onClick={handleSubmit}>
+            type='submit'>
             Start coding now
           </button>
         </div>

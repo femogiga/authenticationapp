@@ -8,6 +8,7 @@ import EditPage from './components/EditPage.jsx';
 import Profile from './components/Profile.jsx';
 import { Provider } from 'react-redux';
 import store from './features/store.js';
+import Register from './components/Register.jsx';
 
 const Root = () => {
   return (
@@ -15,6 +16,7 @@ const Root = () => {
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='/login' element={<Loginpage />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/edit' element={<EditPage />} />
         <Route path='/profile' element={<Profile />} />
       </Routes>
