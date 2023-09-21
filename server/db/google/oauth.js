@@ -33,7 +33,7 @@ router.get('/', async function (req, res, next) {
     console.log('crediatials===>', user);
 
     const userData = await getUserData(user.access_token);
-      res.status.json({data:userData})
+      res.status(200).json({data:userData})
   } catch (err) {
     console.log('signnig in error',err);
   }
