@@ -9,44 +9,54 @@ import { setInputValue, clear, loginAsync } from '../features/loginSlice';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import apiService from '../apiService';
 
 const Loginpage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { emailInput, passwordInput, data, loading, error } = useSelector(
     (state) => state.login
   );
 
+  function navigateTo(url) {
+    window.location.href = url;
+  }
+
+  async function handleGoogleAuth() {
+    const response = await fetch('http://localhost:9000/request', {
+      method: 'POST',
+    });
+    const data = await response.json();
+    navigateTo(data.url);
+    console.log('data====>',data)
+    if (response.status === 200) {
+      // navigate('/profile')
+      const getUser = await fetch('http://localhost:9000/oauth')
+      const userdata = await getUser.json()
+      console.log(userdata)
+    }
+  }
+
   const handleInputChange = (field, value) => {
     dispatch(setInputValue({ field, value }));
   };
 
-  useEffect(() => {
-    // console.log(data);
-      console.log(data);
-  },[data])
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(setInputValue({ field: 'error', value: null }));
 
-  const navigate = useNavigate();
-
-  // Select login state from Redux store
-
-  // Handle login form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    // Dispatch the loginAsync action with user credentials
-    dispatch(loginAsync({ email: emailInput, password: passwordInput }))
-      .then(() => {
-        if (data && data.token) {
-          // Redirect to the profile page after successful login
-          localStorage.setItem('token',data.token);
-          // console.log(data.token)
+    dispatch(loginAsync({ email: emailInput, password: passwordInput })).then(
+      (resultAction) => {
+        if (loginAsync.fulfilled.match(resultAction)) {
           navigate('/profile');
+        } else if (loginAsync.rejected.match(resultAction)) {
+          dispatch(
+            setInputValue({ field: 'error', value: resultAction.error.message })
+          );
         }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      }
+    );
   };
-
   return (
     <div className='loginpage'>
       <Logo />
@@ -85,7 +95,7 @@ const Loginpage = () => {
         </div>
         <div className='flow-1'>
           <button
-            onClick={handleSubmit}
+            onClick={(e) => handleSubmit(e)}
             className='submit radius-8'
             type='submit'>
             Start coding now
@@ -96,13 +106,15 @@ const Loginpage = () => {
         or continue with these social profile
       </p>
       <article className='flow-1 flex flex-center'>
-        <img src={google} />
+        <Link onClick={() => handleGoogleAuth()}>
+          <img src={google} />
+        </Link>
         <img src={facebook} />
         <img src={twitter} />
         <img src={github} />
       </article>
       <p className='font-grey center'>
-        Already a member? <Link to='/'>Login</Link>
+        Not registered? <Link to='/register'>Register</Link>
       </p>
     </div>
   );

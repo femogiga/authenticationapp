@@ -28,18 +28,6 @@ function App() {
         <EditPage/>
       </Container> */}
       <Loginpage />
-      <FilePond
-        files={files}
-        onupdatefiles={setFiles}
-        allowMultiple={true}
-        maxFiles={3}
-        // server='/api'
-        server='http://res.cloudinary.com/dmaakpayw'
-        name='files'
-        labelIdle='<span class="material-symbols-outlined">
-photo_camera
-</span>'
-      />
     </div>
   );
 }
