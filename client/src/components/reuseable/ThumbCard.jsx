@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { googleLogout } from '@react-oauth/google';
 
-const ThumbCard = () => {
+const ThumbCard = ({ onClick }) => {
   return (
     <article className='thumbcard'>
       <ul className='list flex flex-column gap-05'>
@@ -18,7 +19,10 @@ const ThumbCard = () => {
         </li>
         <hr />
         <li className='font-red'>
-          <Link className='flex align-center gap-05 logout'>
+          <Link
+            to=''
+            onClick={onClick}
+            className='flex align-center gap-05 logout'>
             <span className='material-symbols-outlined font-red'>logout</span>
             <span className='font-red'> Logout</span>
           </Link>

@@ -4,7 +4,7 @@ import ThumbCard from './reuseable/ThumbCard';
 import { Link } from 'react-router-dom';
 import { setVisible } from '../features/thumbSlice';
 import { useSelector, useDispatch } from 'react-redux';
-const Header = () => {
+const Header = ({ onClick, photo }) => {
   const dispatch = useDispatch();
   const visible = useSelector((state) => state.thumb.visible);
   const handleThumbVisible = (e) => {
@@ -20,7 +20,8 @@ const Header = () => {
             <div className='img-cont'>
               <img
                 className='avatar'
-                src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600'
+                // src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600'
+                 src={photo || 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600'}
               />
             </div>
           </Link>
@@ -33,7 +34,7 @@ const Header = () => {
             )}
           </button>
         </div>
-        {visible && <ThumbCard />}
+        {visible && <ThumbCard onClick={onClick} photo={photo} />}
       </div>
     </header>
   );

@@ -8,35 +8,50 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setInputValue, clear, loginAsync } from '../features/loginSlice';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import apiService from '../apiService';
+import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
+import axios from 'axios';
 
-const Loginpage = () => {
+const Loginpage = ({onClick}) => {
+  // const [user, setUser] = useState([]);
+  // const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { emailInput, passwordInput, data, loading, error } = useSelector(
     (state) => state.login
   );
 
-  function navigateTo(url) {
-    window.location.href = url;
-  }
+  // const login = useGoogleLogin({
+  //   onSuccess: (response) => {
+  //     setUser(response)
+  //     localStorage.setItem('user',user)
+  //     // navigate('/profile' ,user)
+  //   },
+  //   onError: (error) => console.error('Login Failed ', error),
+  // });
 
-  async function handleGoogleAuth() {
-    const response = await fetch('http://localhost:9000/request', {
-      method: 'POST',
-    });
-    const data = await response.json();
-    navigateTo(data.url);
-    console.log('data====>',data)
-    if (response.status === 200) {
-      // navigate('/profile')
-      const getUser = await fetch('http://localhost:9000/oauth')
-      const userdata = await getUser.json()
-      console.log(userdata)
-    }
-  }
 
+
+
+  // useEffect(() => {
+  //   if (user) {
+  //     axios
+  //       .get(
+  //         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${user.acces_token}`,
+  //             Accept: 'application/json',
+  //           },
+  //         }
+  //       )
+  //       .then((response) => setProfile(response.data))
+
+  //       .catch((error) => console.error(error));
+  //   }
+  // }, [user]);
+//console.log(profile)
   const handleInputChange = (field, value) => {
     dispatch(setInputValue({ field, value }));
   };
@@ -106,7 +121,12 @@ const Loginpage = () => {
         or continue with these social profile
       </p>
       <article className='flow-1 flex flex-center'>
-        <Link onClick={() => handleGoogleAuth()}>
+        {/* <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            console.log(credentialResponse);
+          }}
+        /> */}
+        <Link onClick= {onClick}>
           <img src={google} />
         </Link>
         <img src={facebook} />
