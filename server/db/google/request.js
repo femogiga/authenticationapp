@@ -4,7 +4,8 @@ const router = require('express').Router()
 
 
 
-router.post('/',authenticatedUser)
+router.post('/', authenticatedUser)
+
 
 
 module.exports = router

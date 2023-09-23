@@ -30,12 +30,12 @@ const authenticatedUser = async (req, res) => {
         name: payload?.name,
         bio: '',
         password: "",
-        phone:""
+        phone: ""
       },
     });
   }
 
-  res.status(200).json({ user, credential });
+  res.status(200).json({user });
 };
 
 module.exports = { authenticatedUser };

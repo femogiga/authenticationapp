@@ -13,7 +13,7 @@ import apiService from '../apiService';
 import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
 import axios from 'axios';
 
-const Loginpage = ({onClick,onSuccess}) => {
+const Loginpage = ({onClick,onSuccess,loginData}) => {
   // const [user, setUser] = useState([]);
   // const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ const Loginpage = ({onClick,onSuccess}) => {
     dispatch(loginAsync({ email: emailInput, password: passwordInput })).then(
       (resultAction) => {
         if (loginAsync.fulfilled.match(resultAction)) {
+         
           navigate('/profile');
         } else if (loginAsync.rejected.match(resultAction)) {
           dispatch(

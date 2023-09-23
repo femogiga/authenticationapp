@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Container from './reuseable/Container';
 import Header from './Header';
 import apiService from '../apiService';
+import axios from 'axios';
 
-const Profile = ({ onClick,picture,name,email }) => {
+const Profile = ({ onClick, picture, name, email,bio ,password}) => {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/googleusers/email/${email}`)
+      .then((response) => response.data)
+      .then((res) => setUser(res))
+      .catch((err) => console.error(err));
+  }, [email]);
 
-
-
-
-  //
+  console.log(user);
   return (
     <section className='profile'>
-      <Header onClick={onClick} photo={picture} />
+      <Header onClick={onClick} photo={user.user?.photo} />
       <table>
         <tbody>
           <tr>
@@ -41,51 +47,33 @@ const Profile = ({ onClick,picture,name,email }) => {
             </td>
           </tr>
 
-          {/* <tr className=''>
-          <tr className='flex space-btw align-center'>
-            <td className='fifty-percent'>
-              <tr>
-                <td>Profile</td>
-              </tr>
-              <tr>
-                <td className='fs-small'>
-                  some info may be visible to other people
-                </td>
-              </tr>
-            </td>
-            <td>
-              <button>Edit</button>
-            </td>
-          </tr>
-        </tr> */}
-
           <tr>
             <td className='font-lightgrey'>PHOTO</td>
             <td style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <img
                 className='img-style'
                 // src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600'
-                src={picture}
+                src={user.user?.photo}
               />
             </td>
           </tr>
           <tr>
             <td className='font-lightgrey'>NAME</td>
-            <td>{name}</td>
+            <td>{name || user.user?.name}</td>
           </tr>
           <tr>
             <td className='font-lightgrey'>BIO</td>
-            <td>I am a software developer....</td>
+            <td>{bio||user?.user?.bio}</td>
           </tr>
 
           <tr>
             <td className='font-lightgrey'>EMAIL</td>
-            <td>{email}</td>
+            <td>{email || user.user?.email}</td>
           </tr>
 
           <tr>
             <td className='font-lightgrey'>PASSWORD</td>
-            <td>***********</td>
+            <td>{password || user?.user?.password}</td>
           </tr>
         </tbody>
       </table>

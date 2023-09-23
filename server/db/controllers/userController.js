@@ -11,7 +11,7 @@ const getUser = async (req, res) => {
     const user = await prisma.user.findUnique({
       where: {
         // id: decoded.id,
-        id:req.user.id
+        id: req.user.id,
       },
     });
     res.status(200).json(user);
@@ -20,4 +20,15 @@ const getUser = async (req, res) => {
   }
 };
 
-module.exports = { getUser };
+const getByEmail = async (req, res) => {
+  const email = req.params.email;
+  console.log('email=>',email);
+  const user = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+  });
+  res.status(200).json({ user });
+};
+
+module.exports = { getUser, getByEmail };

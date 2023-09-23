@@ -34,12 +34,11 @@ function App() {
         localStorage.setItem('loginData', JSON.stringify(response));
       });
 
-    // const data = await res.data;
-    // setLoginData(data);
-    // localStorage.setItem('loginData', JSON.stringify(data));
   };
 
-  useEffect(() => {}, [loginData]);
+  useEffect(() => {
+
+  }, [loginData]);
 
   const handleLogout = () => {
     localStorage.removeItem('loginData');
@@ -56,9 +55,9 @@ function App() {
         buttonText={'login'}></GoogleLogin>
 
       {loginData ? (
-        <Profile onClick={handleLogout} {...loginData} />
+        <Profile onClick={handleLogout} {...loginData} loginData={loginData } />
       ) : (
-        <Loginpage onClick={''} />
+          <Loginpage onClick={''} loginData={loginData } />
       )}
 
 

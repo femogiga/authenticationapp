@@ -20,6 +20,7 @@ app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cors());
 app.use('/users', authMiddleware, userRoute);
+app.use('/googleusers', userRoute);
 app.use('/api/google-login',googleRoute)
 app.use('/', authRoute);
 // app.use(
