@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import store from './features/store.js';
 import Register from './components/Register.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import ProtectedRoute from './components/reuseable/ProtectedRoute.jsx';
 const Root = () => {
   return (
     <BrowserRouter>
@@ -17,8 +18,22 @@ const Root = () => {
         <Route path='/' element={<App />} />
         <Route path='/login' element={<Loginpage />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/edit' element={<EditPage />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route
+          path='/edit'
+          element={
+            <ProtectedRoute>
+              <EditPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/profile'
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -71,7 +71,7 @@ const Profile = ({ onClick,picture,name,email }) => {
           </tr>
           <tr>
             <td className='font-lightgrey'>NAME</td>
-            <td contentEditable={true}>{name}</td>
+            <td>{name}</td>
           </tr>
           <tr>
             <td className='font-lightgrey'>BIO</td>

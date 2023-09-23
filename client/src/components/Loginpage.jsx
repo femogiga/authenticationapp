@@ -13,7 +13,7 @@ import apiService from '../apiService';
 import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
 import axios from 'axios';
 
-const Loginpage = ({onClick}) => {
+const Loginpage = ({onClick,onSuccess}) => {
   // const [user, setUser] = useState([]);
   // const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
@@ -22,36 +22,8 @@ const Loginpage = ({onClick}) => {
     (state) => state.login
   );
 
-  // const login = useGoogleLogin({
-  //   onSuccess: (response) => {
-  //     setUser(response)
-  //     localStorage.setItem('user',user)
-  //     // navigate('/profile' ,user)
-  //   },
-  //   onError: (error) => console.error('Login Failed ', error),
-  // });
 
 
-
-
-  // useEffect(() => {
-  //   if (user) {
-  //     axios
-  //       .get(
-  //         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${user.acces_token}`,
-  //             Accept: 'application/json',
-  //           },
-  //         }
-  //       )
-  //       .then((response) => setProfile(response.data))
-
-  //       .catch((error) => console.error(error));
-  //   }
-  // }, [user]);
-//console.log(profile)
   const handleInputChange = (field, value) => {
     dispatch(setInputValue({ field, value }));
   };

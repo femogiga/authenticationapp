@@ -1,42 +1,41 @@
-const express = require('express');
 require('dotenv').config();
 const { OAuth2Client } = require('google-auth-library');
+const prisma = require('../prismaClient');
 
-const router = express.Router();
-
-async function getUserData(access_token) {
-
-
-  const response = await fetch(
-    `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`
-  );
-  const data = await response.json();
-  console.log('data====>', data);
-  // res.status(200).json({data:data})
-    return data
-}
-
-router.get('/', async function (req, res, next) {
-  const code = req.query.code;
-  console.log('code', code);
-  try {
-    const redirectUrl = 'http://localhost:9000/oauth';
-    const oauth2Client = new OAuth2Client(
-      process.env.CLIENT_ID,
-      process.env.CLIENT_SECRET,
-      redirectUrl
-    );
-    const tokenResponse = await oauth2Client.getToken(code);
-    await oauth2Client.setCredentials(tokenResponse.tokens);
-    console.log('Tokens acquired');
-    const user = oauth2Client.credentials;
-    console.log('crediatials===>', user);
-
-    const userData = await getUserData(user.access_token);
-      res.status(200).json({data:userData})
-  } catch (err) {
-    console.log('signnig in error',err);
-  }
+const googleClient = new OAuth2Client({
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
 });
 
-module.exports = router;
+const authenticatedUser = async (req, res) => {
+  const { credential } = req.body;
+  console.log('token', credential);
+  const ticket = await googleClient.verifyIdToken({
+    idToken: credential,
+    audience: process.env.CLIENT_ID,
+  });
+
+  const payload = ticket.getPayload();
+  let user = await prisma.user.findUnique({
+    where: {
+      email: payload?.email,
+    },
+  });
+
+  if (!user) {
+    user = await prisma.user.create({
+      data: {
+        email: payload?.email,
+        photo: payload?.picture,
+        name: payload?.name,
+        bio: '',
+        password: "",
+        phone:""
+      },
+    });
+  }
+
+  res.status(200).json({ user, credential });
+};
+
+module.exports = { authenticatedUser };

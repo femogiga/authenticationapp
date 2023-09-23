@@ -14,66 +14,54 @@ import axios from 'axios';
 function App() {
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState([]);
+  const [loginData, setLoginData] = useState(
+    localStorage.getItem('loginData') ? localStorage.getItem('loginData') : null
+  );
   //  const navigate = useNavigate();
-  const handleLogout = () => {
-    googleLogout();
-    setProfile(null);
-    setUser(null);
+
+  const handleFailure = (result) => {
+    alert(result);
   };
-  const login = useGoogleLogin({
-    onSuccess: (response) => {
-      setUser(response);
-      localStorage.setItem('user', user);
-      // navigate('/profile' ,user)
-    },
-    onError: (error) => console.error('Login Failed ', error),
-  });
 
-  useEffect(() => {
-    if (user) {
-      axios
-        .get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.acces_token}`,
-              Accept: 'application/json',
-            },
-          }
-        )
-        .then((response) => setProfile(response.data))
+  const handleLogin = async (googleData) => {
+    console.log('googleData===>', googleData);
+    console.log('loginData===>', loginData);
+    const res = axios
+      .post(`http://localhost:9000/api/google-login`, googleData)
+      .then((response) => response.data.user)
+      .then((response) => {
+        setLoginData(response);
+        localStorage.setItem('loginData', JSON.stringify(response));
+      });
 
-        .catch((error) => console.error(error));
-    }
-  }, [user]);
+    // const data = await res.data;
+    // setLoginData(data);
+    // localStorage.setItem('loginData', JSON.stringify(data));
+  };
 
-  useEffect(() => {
-    if (user) {
-      const fetchProfile = async () => {
-        await fetch(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.acces_token}`,
-              Accept: 'application/json',
-            },
-          }
-        );
-        const response = await response.json();
-        setProfile(response.data);
-      };
-      fetchProfile();
-    }
-  }, [user]);
-  console.log(user);
-  console.log('profile====>', profile);
+  useEffect(() => {}, [loginData]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('loginData');
+    setLoginData(null);
+    googleLogout();
+    console.log(loginData);
+  };
+
   return (
     <div>
-      {profile ? (
-        <Profile onClick={handleLogout} {...profile} />
+      <GoogleLogin
+        onSuccess={handleLogin}
+        onFailure={handleFailure}
+        buttonText={'login'}></GoogleLogin>
+
+      {loginData ? (
+        <Profile onClick={handleLogout} {...loginData} />
       ) : (
-        <Loginpage onClick={login} />
+        <Loginpage onClick={''} />
       )}
+
+
     </div>
   );
 }
